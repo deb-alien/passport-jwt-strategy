@@ -11,7 +11,7 @@ passport.use(
 			jwtFromRequest: ExtractJwt.fromExtractors([(req) => req?.signedCookies?.['access_token'] || null]),
 			secretOrKey: ACCESS_TOKEN_SECRET,
 			ignoreExpiration: false,
-			audience: 'forntend',
+			audience: 'frontend',
 			issuer: 'http://127.0.0.1:1337',
 			algorithms: ['HS256'],
 		},

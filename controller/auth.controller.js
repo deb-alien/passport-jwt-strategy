@@ -139,7 +139,25 @@ export const refresh = async (req, res) => {
 	}
 };
 
-//* === Logout Contoller POST /api/v1/auth/logour ===
+//* === getMe Contoller GET /api/v1/auth/getme ====
+export const getMe = async (req, res) => {
+	try {
+		const user = await User.findById(req.user._id, { password: false, refreshToken: false });
+		if (!user) {
+			return res.status(404).json('User Not Found');
+		}
+		return res.status(200).json({ success: true, user });
+	} catch (error) {
+		return res.status(500).json({
+			error: 'Internal Server Error',
+			error_name: error.name,
+			error_msg: error.message,
+			err_stack: error.stack,
+		});
+	}
+};
+
+//* === Logout Contoller POST /api/v1/auth/logout ===
 export const logout = async (req, res) => {
 	try {
 		const rawToken = req.signedCookies.refresh_token;
