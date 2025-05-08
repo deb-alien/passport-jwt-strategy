@@ -1,10 +1,10 @@
 import express from 'express';
 import { createServer } from 'node:http';
+import cookieParser from 'cookie-parser';
 
 import { COOKIE_SECRET, HOST, PORT } from './config/app.config.js';
 import connectMongoDB from './config/connectDB.js';
 
-import cookieParser from 'cookie-parser';
 import authRoutes from './routes/auth.routes.js';
 
 import './config/passport.config.js'
